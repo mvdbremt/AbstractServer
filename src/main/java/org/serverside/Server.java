@@ -63,6 +63,14 @@ public class Server implements Runnable {
             }
         }
     }
+    public void broadcastToAllExcept(ArrayList<ConnectionHandler> exception,String message){
+        for (ConnectionHandler handler: connections){
+            if(handler !=null){
+                if (exception.contains(handler)) continue;
+                handler.sendmessage(message);
+            }
+        }
+    }
 
     public ArrayList<ConnectionHandler> getConnections() {
         return connections;
@@ -92,7 +100,7 @@ public class Server implements Runnable {
 
     }
 
-    class ConnectionHandler implements Runnable{
+    public class ConnectionHandler implements Runnable{
 
         private Socket client;
         private BufferedReader in;
@@ -118,7 +126,7 @@ public class Server implements Runnable {
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 String message;
                 while ((message=in.readLine())!= null){
-                    serverObserver.receiveMessage(message);
+                    serverObserver.receiveMessage(message,this);
                 }
             } catch (IOException e) {
                 shutdown();
