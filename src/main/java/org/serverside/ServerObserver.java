@@ -3,15 +3,29 @@ package org.serverside;
 import java.net.Socket;
 
 public interface ServerObserver {
-    // makes user handle connection of new socket
+    /**
+     * Force handle of client connection
+     * @param client client that is connecting
+     */
+
     public void handleConnection(Socket client);
 
-    // makes user handle shutdown of server
+    /**
+     * Force handle of server shutdown
+     * @param server server that is shutting down
+     */
     public void handleServerShutdown(Server server);
 
-    // makes user handle shutdown of a client
+    /**
+     * Force handle of client shutdown
+     * @param client client that is shutting down
+     */
     public void handleClientShutdown(Server.ConnectionHandler client);
 
-    // called when server receives message
+    /**
+     * called when server receives message
+     * @param message message that was received
+     * @param connectionHandler client that sent message
+     */
     public void receiveMessage(String message, Server.ConnectionHandler connectionHandler);
 }
