@@ -16,7 +16,7 @@ public class Server implements Runnable {
 
     private ArrayList<ConnectionHandler> connections;
     private  ServerSocket server;
-    private boolean done =false;
+    private boolean done;
     private ExecutorService pool;
     private ServerObserver serverObserver;
     private int port;
@@ -75,7 +75,7 @@ public class Server implements Runnable {
         //
         for (ConnectionHandler handler: connections){
             if(handler !=null){
-                handler.sendmessage(message);
+                handler.sendMessage(message);
             }
         }
     }
@@ -90,7 +90,7 @@ public class Server implements Runnable {
         for (ConnectionHandler handler: connections){
             if(handler !=null){
                 if (handler.equals(exception)) continue;
-                handler.sendmessage(message);
+                handler.sendMessage(message);
             }
         }
     }
@@ -105,7 +105,7 @@ public class Server implements Runnable {
         for (ConnectionHandler handler: connections){
             if(handler !=null){
                 if (exception.contains(handler)) continue;
-                handler.sendmessage(message);
+                handler.sendMessage(message);
             }
         }
     }
@@ -190,7 +190,7 @@ public class Server implements Runnable {
          * Sends message to the client
          * @param message message to be sent
          */
-        public void sendmessage(String message){
+        public void sendMessage(String message){
             out.println(message);
         }
 

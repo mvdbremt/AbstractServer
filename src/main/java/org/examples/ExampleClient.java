@@ -34,6 +34,6 @@ public class ExampleClient implements ClientObserver {
     }
 
     public static void main(String[] args) {
-        ExampleClient exampleClient=new ExampleClient();
+        new ExampleClient();
     }
 }

@@ -6,21 +6,33 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * Client inspired by client of "Simple TCP Chat Room in Java" by NeuralNine
+ */
 public class Client implements Runnable{
     private Socket client;
     private BufferedReader in;
     private PrintWriter out;
-    private boolean done;
     private String IPaddr;
     private int port;
     private ClientObserver clientObserver;
+
+    /**
+     * Constructor for client
+     * @param clientObserver ClientObserver is necessary to have a class that handles the different events
+     * @param IPaddr IP address of server
+     * @param port port of client
+     */
     public Client(ClientObserver clientObserver,String IPaddr,int port){
-        done=false;
         this.clientObserver=clientObserver;
         this.IPaddr=IPaddr;
         this.port=port;
 
     }
+
+    /**
+     * This will start the client and from there all should be automatic
+     */
     @Override
     public void run() {
         try {
@@ -37,8 +49,11 @@ public class Client implements Runnable{
             shutdown();
         }
     }
+
+    /**
+     * Shutdown of client
+     */
     public void shutdown(){
-        done=true;
         clientObserver.handleClientShutdown(this);
         try {
             in.close();
@@ -50,6 +65,11 @@ public class Client implements Runnable{
             //ignore
         }
     }
+
+    /**
+     * Sends message to server
+     * @param message message to be sent
+     */
     public void sendMessage(String message){
         out.println(message);
     }

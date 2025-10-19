@@ -7,18 +7,18 @@ import java.net.Socket;
 
 public class ExampleServer implements ServerObserver {
     Server server;
-    int clientcount;
+    int clientCount;
 
     public ExampleServer(){
         server=new Server(this,9999);
-        clientcount=0;
+        clientCount =0;
         server.run();
     }
     @Override
     public void handleConnection(Socket client) {
         System.out.println("New connection");
-        server.createNewConnectionHandler(client).setConnectionName("Client"+clientcount);
-        clientcount++;
+        server.createNewConnectionHandler(client).setConnectionName("Client"+ clientCount);
+        clientCount++;
     }
 
     @Override
@@ -39,6 +39,6 @@ public class ExampleServer implements ServerObserver {
 
 
     public static void main(String[] args) {
-        ExampleServer exampleServer=new ExampleServer();
+        new ExampleServer();
     }
 }
