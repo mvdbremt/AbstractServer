@@ -110,10 +110,18 @@ public class Server implements Runnable {
         }
     }
 
+    /**
+     * Gets connections to server
+     * @return ArrayList of connections to server
+     */
     public ArrayList<ConnectionHandler> getConnections() {
         return connections;
     }
 
+    /**
+     * Gets port of server
+     * @return port of server
+     */
     public int getPort() {
         return port;
     }
@@ -151,6 +159,10 @@ public class Server implements Runnable {
         private PrintWriter out;
         private String connectionName;
 
+        /**
+         * Constructor to initialise client socket in ConnectionHandler
+         * @param client client that the ConnectionHandler must handle
+         */
         public ConnectionHandler(Socket client){
             this.client=client;
         }
@@ -164,6 +176,10 @@ public class Server implements Runnable {
             this.connectionName = connectionName;
         }
 
+        /**
+         * Gets connection name
+         * @return connection name
+         */
         public String getConnectionName() {
             return connectionName;
         }

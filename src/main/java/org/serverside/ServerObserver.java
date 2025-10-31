@@ -2,6 +2,9 @@ package org.serverside;
 
 import java.net.Socket;
 
+/**
+ * Class used to implement functions needed to observe server
+ */
 public interface ServerObserver {
     /**
      * Force handle of client connection
